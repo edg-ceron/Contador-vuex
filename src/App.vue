@@ -3,7 +3,8 @@
     <img src="./assets/logo.png">
     <div>
       <h2>Contador</h2>
-      <p>{{count}} {{stringTest}}</p>
+      <p>{{count}}</p>
+      <p>{{getDouble}}</p>
     </div>
     <div>
       <button @click="increment">+</button>
@@ -17,23 +18,16 @@
 
 <script>
 
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'app',
 
-  data() {
-    return {
-      test: 'test'
-    }
-  },
-  
   computed: {
     ...mapState(['count']),
 
-    stringTest() {
-      return this.test
-    }
+    ...mapGetters(['getDouble'])
+
   },
 
   methods: {
