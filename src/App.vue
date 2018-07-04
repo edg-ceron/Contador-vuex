@@ -1,18 +1,51 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      <h2>Contador</h2>
+      <p>{{count}} {{stringTest}}</p>
+    </div>
+    <div>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+    </div>
+    <div>
+      <button @click="increment10">+10</button>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+
+  data() {
+    return {
+      test: 'test'
+    }
+  },
+  
+  computed: {
+    ...mapState(['count']),
+
+    stringTest() {
+      return this.test
+    }
+  },
+
+  methods: {
+    ...mapMutations(['increment', 'decrement']),
+
+    increment10(number) {
+      this.$store.commit('increment', {
+        number: 10
+      })
+    }
   }
+
 }
 </script>
 
